@@ -46,28 +46,28 @@ Tech Stack
 Installation
 
 1. Clone the repository:
-   ```bash
+ 
    git clone https://github.com/yourusername/wefit.git
    cd wefit
-   ```
+   
 
 2. Install dependencies for both front-end and back-end:
-   ```bash
+  
    npm install
    cd client
    npm install
-   ```
+   
 
 3. Set up your environment variables by creating a `.env` file in the root directory with the following values:
-   ```env
+   
    MONGODB_URI=<your_mongodb_uri>
    JWT_SECRET=<your_jwt_secret>
-   ```
+   
 
 4. Start the development server:
-   ```bash
-   npm run dev
-   ```
+   
+   npm start
+   
 
 API Endpoints
 
@@ -85,17 +85,6 @@ Future Improvements
 - Advanced Analytics: Provide more detailed analytics and insights based on users' workout and meal data.
 - Mobile Application: Develop a mobile version of the app for Android and iOS for on-the-go tracking.
 
-Contributing
-
-1. Fork the project.
-2. Create your feature branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Open a pull request.
-
-License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
