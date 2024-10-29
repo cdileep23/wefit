@@ -44,58 +44,32 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!password || !email) {
-      return res.status(400).json({
-        message: "Something is missing",
-        success: false,
-      });
+
+    // Check if email and password are provided
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required", success: false });
     }
 
-    let user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({
-        message: "Incorrect email or password",
-        success: false,
-      });
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(400).json({ message: "Invalid email or password", success: false });
     }
 
-    const isCorrect = await bcrypt.compare(password, user.password);
-    if (!isCorrect) {
-      return res.status(400).json({
-        message: "Incorrect email or password",
-        success: false,
-      });
-    }
-
-    const tokenData = {
-      userId: user._id,
-    };
-
-    const token = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
-    user = {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-    };
-
+    // Create token payload and sign token
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
+    console.log(token)
+    // Return response with token stored in httpOnly cookie
     return res.status(200).cookie("token", token, {
-      maxAge: 1 * 24 * 60 * 60 * 1000, // Cookie expires in 1 day
-      httpOnly: true, // Prevent JavaScript from accessing the cookie
-      sameSite: 'strict', // Prevent cross-site request forgery
-      secure: process.env.NODE_ENV === 'production', // Only send cookie over HTTPS in production
-    }).json({
-      message: `Welcome back ${user.name}`,
-      success: true,
-      user,
-      token, // Optionally you can omit sending the token in the JSON response for added security
-    });
-  
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      httpOnly: true, // JavaScript cannot access this cookie
+      sameSite: 'strict', // CSRF protection
+      secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
+    }).json({ message: `Welcome back ${user.name}`, success: true, user: { _id: user._id, name: user.name, email: user.email } });
+
   } catch (error) {
-    console.log('Login error:', error);
-    return res.status(500).json({
-      message: "An internal server error occurred.",
-      success: false,
-    });
+    console.error('Login error:', error);
+    return res.status(500).json({ message: "Internal server error", success: false });
   }
 };
 
@@ -251,6 +225,43 @@ export const getSummary = async (req, res) => {
   }
 };
 
+export const checkToken = (req, res) => {
+  try {
+    // Get the token from cookies
+    const token = req.cookies.token;
+
+    // Check if the token exists
+    if (!token) {
+      return res.status(403).json({
+        message: "No token provided",
+        success: false,
+      });
+    }
+
+    // Verify the token
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({
+          message: "Invalid token",
+          success: false,
+        });
+      }
+
+      // Token is valid, return success response
+      return res.status(200).json({
+        message: "Token is valid",
+        success: true,
+        userId: decoded.userId, // You can return additional details if needed
+      });
+    });
+  } catch (error) {
+    console.error("Token verification error:", error);
+    return res.status(500).json({
+      message: "Internal server error",
+      success: false,
+    });
+  }
+};
 
 
 

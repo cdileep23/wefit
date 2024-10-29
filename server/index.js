@@ -23,7 +23,7 @@ app.use(cookieParser()); // Add cookie-parser middleware
 app.use(express.urlencoded({extended:true}))
 app.get("/",async(req,res)=>{
     res.status(200).json({
-        message:"hello"
+        message:"hello from vercel"
     })
 })
 app.use('/api/user',userRoute);
