@@ -49,15 +49,15 @@ export const removeVideo = async (req, res) => {
 
 
 export const getAllVideosByUser = async (req, res) => {
-    try {
-      const { userId } = req.body;
-  
-      const videos = await Video.find({ user: userId });
-  
-      return res.status(200).json({ videos, success: true });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: "Internal server error", success: false });
-    }
-  };
-  
+  try {
+    const userId = req.userId; // Use user ID from authentication middleware
+
+    // Fetch videos created by the authenticated user
+    const videos = await Video.find({ user: userId });
+
+    return res.status(200).json({ videos, success: true });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error", success: false });
+  }
+};
