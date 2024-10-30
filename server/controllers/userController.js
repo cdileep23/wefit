@@ -62,7 +62,7 @@ export const login = async (req, res) => {
     // Return response with token stored in httpOnly cookie
     return res.status(200).cookie("token", token, {
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-      httpOnly: true, // JavaScript cannot access this cookie
+    // JavaScript cannot access this cookie
       sameSite: 'strict', // CSRF protection
       secure: process.env.NODE_ENV === 'production', // Send only over HTTPS in production
     }).json({ message: `Welcome back ${user.name}`, success: true, user: { _id: user._id, name: user.name, email: user.email } });
