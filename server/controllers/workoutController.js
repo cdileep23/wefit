@@ -35,7 +35,7 @@ export const addWorkout = async (req, res) => {
 
     // Parse the date and subtract one day
     const workoutDate = new Date(date);
-    workoutDate.setDate(workoutDate.getDate() - 1); // Subtract one day
+    workoutDate.setDate(workoutDate.getDate()); // Subtract one day
 
     // Calculate calories
     const caloriesBurned = calculateCalories(sets, weight, duration);
