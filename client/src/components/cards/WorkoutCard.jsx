@@ -74,7 +74,7 @@ const WorkoutCard = ({ workout, refreshWorkouts }) => {
    
 
     try {
-     const response= await axios.delete(`http://localhost:8080/api/workout/delete-workout/${workout._id}`, {
+     const response= await axios.delete(`https://wefit-46dz.onrender.com/api/workout/delete-workout/${workout._id}`, {
       
         withCredentials: true
       });

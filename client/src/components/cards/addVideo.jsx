@@ -65,7 +65,7 @@ const AddVideo = ({ refreshDashboard, buttonLoading }) => {
   const handleAddVideo = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/video/add-video",
+        "https://wefit-46dz.onrender.com/api/video/add-video",
         {
           title: videoDetails.title,
           description: videoDetails.description,

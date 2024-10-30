@@ -90,7 +90,7 @@ const Meals = () => {
   const getTodaysMeals = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:8080/api/meal/get-meal?date=${date}`, {
+      const response = await axios.get(`https://wefit-46dz.onrender.com/api/meal/get-meal?date=${date}`, {
         withCredentials: true,
       });
       setTodaysMeals(response.data.todaysMeals);
@@ -105,7 +105,7 @@ const Meals = () => {
   // Function to check if user token is valid
   const checkUserToken = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/user/check-user", {
+      const response = await axios.get("https://wefit-46dz.onrender.com/api/user/check-user", {
         withCredentials: true,
       });
       const data = response.data;

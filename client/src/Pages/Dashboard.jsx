@@ -78,7 +78,7 @@ const SummaryComponent = () => {
   const checkUserToken = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/user/check-user", 
+        "https://wefit-46dz.onrender.com/api/user/check-user", 
         { withCredentials: true }
       );
       const data = response.data;
@@ -99,7 +99,7 @@ const SummaryComponent = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/user/get-summary",
+        "https://wefit-46dz.onrender.com/api/user/get-summary",
         { withCredentials: true }
       );
       const summaryData = response.data;

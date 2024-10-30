@@ -32,7 +32,7 @@ const MainComponent = () => {
   // Check if user is authenticated
   const checkUserToken = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/user/check-user", {
+      const response = await axios.get("https://wefit-46dz.onrender.com/api/user/check-user", {
         withCredentials: true,
       });
       if (!response.data.success) {
@@ -47,7 +47,7 @@ const MainComponent = () => {
   const fetchVideos = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/api/video/get-all", {
+      const response = await axios.get("https://wefit-46dz.onrender.com/api/video/get-all", {
         withCredentials: true,
       });
       setVideos(response.data.videos);

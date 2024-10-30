@@ -94,7 +94,7 @@ const Workouts = () => {
   // Check if user is authenticated
   const checkUserToken = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/user/check-user", {
+      const response = await axios.get("https://wefit-46dz.onrender.com/api/user/check-user", {
         withCredentials: true,
       });
       if (!response.data.success) {
@@ -109,7 +109,7 @@ const Workouts = () => {
   const getTodaysWorkout = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:8080/api/workout/get-workout?date=${date}`, {
+      const response = await axios.get(`https://wefit-46dz.onrender.com/api/workout/get-workout?date=${date}`, {
         withCredentials: true,
       });
       setTodaysWorkouts(response.data.todaysWorkouts);

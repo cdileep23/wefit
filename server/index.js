@@ -13,7 +13,7 @@ dotenv.config()
 const app=express();
 const _dirname=path.resolve()
 const corsOptions = {
-    origin: 'http://localhost:3000', // Your frontend URL
+    origin: 'https://wefit-46dz.onrender.com', // Your frontend URL
     credentials: true, // Allow cookies to be sent
   };
   

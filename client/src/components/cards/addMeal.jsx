@@ -30,7 +30,7 @@ const AddMealForm = ({ refreshMeals }) => {
 
 
     try {
-      const response = await axios.post("http://localhost:8080/api/meal/add-meal", {
+      const response = await axios.post("https://wefit-46dz.onrender.com/api/meal/add-meal", {
         mealName,
         category,
         calories: Number(calories), // Convert to number for sending

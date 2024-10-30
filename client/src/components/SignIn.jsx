@@ -104,7 +104,7 @@ const SignIn = () => {
     if (validateInputs()) {
       try {
         const response = await axios.post(
-          "http://localhost:8080/api/user/login",
+          "https://wefit-46dz.onrender.com/api/user/login",
           { email, password },
           { withCredentials: true }
         );

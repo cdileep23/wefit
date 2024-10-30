@@ -68,7 +68,7 @@ const MealCard = ({ meal, refreshMeals }) => {
     
 
     try {
-      await axios.delete(`http://localhost:8080/api/meal/delete-meal/${meal._id}`, {
+      await axios.delete(`https://wefit-46dz.onrender.com/api/meal/delete-meal/${meal._id}`, {
        
         withCredentials: true,
       });

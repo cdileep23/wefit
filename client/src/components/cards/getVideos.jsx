@@ -32,7 +32,7 @@ const Videos = () => {
   const fetchVideos = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/api/video/get-all", {
+      const response = await axios.get("https://wefit-46dz.onrender.com/api/video/get-all", {
         withCredentials: true,
       });
       setVideos(response.data.videos);
@@ -47,7 +47,7 @@ const Videos = () => {
     if (!window.confirm("Are you sure you want to delete this video?")) return;
 
     try {
-      await axios.delete(`http://localhost:8080/api/video/remove-video/${videoId}`, {
+      await axios.delete(`https://wefit-46dz.onrender.com/api/video/remove-video/${videoId}`, {
         withCredentials: true,
       });
       setVideos(videos.filter(video => video._id !== videoId));

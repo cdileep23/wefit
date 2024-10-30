@@ -132,7 +132,7 @@ const Navbar = ({ currentUser }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/user/logout",{withCredentials:true});
+      const response = await axios.get("https://wefit-46dz.onrender.com/api/user/logout",{withCredentials:true});
       const res=response.data;
       if (res.success ) {
         alert("Logout Successful");

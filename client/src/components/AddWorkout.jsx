@@ -68,7 +68,7 @@ const AddWorkout = ({ refreshDashboard, buttonLoading }) => {
   const handleAddWorkout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/workout/add-workout",
+        "https://wefit-46dz.onrender.com/api/workout/add-workout",
         {
           category: workoutDetails.category,
           workoutName: workoutDetails.workoutName,

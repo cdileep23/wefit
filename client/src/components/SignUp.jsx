@@ -104,7 +104,7 @@ const SignUp = () => {
     setButtonDisabled(true);
     if (validateInputs()) {
       try {
-        const response = await axios.post("http://localhost:8080/api/user/register", {
+        const response = await axios.post("https://wefit-46dz.onrender.com/api/user/register", {
           name,
           email,
           password,
