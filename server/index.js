@@ -7,10 +7,11 @@ import userRoute from "./routes/userRoute.js"
 import workOutRouter from "./routes/workoutRoute.js"
 import mealRoute from "./routes/mealRoute.js"
 import videoRoute from "./routes/videoRoute.js"
+import path from "path"
 dotenv.config()
 
 const app=express();
-
+const _dirname=path.resolve()
 const corsOptions = {
     origin: 'http://localhost:3000', // Your frontend URL
     credentials: true, // Allow cookies to be sent
@@ -21,16 +22,16 @@ const corsOptions = {
 app.use(express.json());
 app.use(cookieParser()); // Add cookie-parser middleware
 app.use(express.urlencoded({extended:true}))
-app.get("/",async(req,res)=>{
-    res.status(200).json({
-        message:"hello from vercel"
-    })
-})
+
 app.use('/api/user',userRoute);
 
 app.use('/api/workout',workOutRouter);
 app.use('/api/meal',mealRoute);
 app.use('/api/video',videoRoute);
+app.use(express.static(path.join(_dirname,"/client/build")))
+app.get('*',(_,res)=>{
+    res.sendFile(path.resolve(_dirname,'client','build','index.html'))
+})
 const startServer=async()=>{
     try {
         connect()

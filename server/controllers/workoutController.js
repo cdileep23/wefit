@@ -88,7 +88,7 @@ export const getWorkoutsByDate = async (req, res) => {
       return res.status(400).json({ message: "Invalid date format", success: false });
     }
 
-    console.log(date); // For debugging
+
 
     // Set the start and end of the day in UTC
     const startOfDay = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -106,7 +106,7 @@ export const getWorkoutsByDate = async (req, res) => {
       0
     );
 
-    console.log(todaysWorkouts);
+
 
     return res.status(200).json({
       message: "Successfully fetched",
